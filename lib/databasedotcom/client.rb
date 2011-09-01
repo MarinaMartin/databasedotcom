@@ -259,6 +259,7 @@ module Databasedotcom
     def http_get(path, parameters={}, headers={})
       req = Net::HTTP.new(URI.parse(self.instance_url).host, 443)
       req.use_ssl = true
+      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
       path_parameters = (parameters || {}).collect { |k, v| "#{URI.escape(k.to_s)}=#{URI.escape(v.to_s)}" }.join('&')
       encoded_path = [URI.escape(path), path_parameters.empty? ? nil : path_parameters].compact.join('?')
       log_request(encoded_path)
@@ -275,6 +276,7 @@ module Databasedotcom
     def http_delete(path, parameters={}, headers={})
       req = Net::HTTP.new(URI.parse(self.instance_url).host, 443)
       req.use_ssl = true
+      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
       path_parameters = (parameters || {}).collect { |k, v| "#{URI.escape(k.to_s)}=#{URI.escape(v.to_s)}" }.join('&')
       encoded_path = [URI.escape(path), path_parameters.empty? ? nil : path_parameters].compact.join('?')
       log_request(encoded_path)
@@ -290,6 +292,7 @@ module Databasedotcom
     def http_post(path, data=nil, parameters={}, headers={})
       req = Net::HTTP.new(URI.parse(self.instance_url).host, 443)
       req.use_ssl = true
+      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
       path_parameters = (parameters || {}).collect { |k, v| "#{URI.escape(k.to_s)}=#{URI.escape(v.to_s)}" }.join('&')
       encoded_path = [URI.escape(path), path_parameters.empty? ? nil : path_parameters].compact.join('?')
       log_request(encoded_path, data)
@@ -305,6 +308,7 @@ module Databasedotcom
     def http_patch(path, data=nil, parameters={}, headers={})
       req = Net::HTTP.new(URI.parse(self.instance_url).host, 443)
       req.use_ssl = true
+      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
       path_parameters = (parameters || {}).collect { |k, v| "#{URI.escape(k.to_s)}=#{URI.escape(v.to_s)}" }.join('&')
       encoded_path = [URI.escape(path), path_parameters.empty? ? nil : path_parameters].compact.join('?')
       log_request(encoded_path, data)
@@ -321,6 +325,7 @@ module Databasedotcom
     def http_multipart_post(path, parts, parameters={}, headers={})
       req = Net::HTTP.new(URI.parse(self.instance_url).host, 443)
       req.use_ssl = true
+      req.verify_mode = OpenSSL::SSL::VERIFY_NONE
       path_parameters = (parameters || {}).collect { |k, v| "#{URI.escape(k.to_s)}=#{URI.escape(v.to_s)}" }.join('&')
       encoded_path = [URI.escape(path), path_parameters.empty? ? nil : path_parameters].compact.join('?')
       log_request(encoded_path)
