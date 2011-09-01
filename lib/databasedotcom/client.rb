@@ -86,6 +86,7 @@ module Databasedotcom
       if user_and_pass?(options)
         req = Net::HTTP.new(self.host, 443)
         req.use_ssl=true
+        req.verify_mode = OpenSSL::SSL::VERIFY_NONE
         user = self.username || options[:username]
         pass = self.password || options[:password]
         path = "/services/oauth2/token?grant_type=password&client_id=#{self.client_id}&client_secret=#{client_secret}&username=#{user}&password=#{pass}"
